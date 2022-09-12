@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- CDN React JS -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <!-- link CDN Bootstrap -->
+        <!-- CSS Only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <title>Props & State</title>
+    </head>
+    <body>
+        
+        <div class="row">
+            <div class="col-6 p-5">
+
+                <div id="app"></div>
+
+            </div>
+        </div>
+
+
+    <script type="text/babel">
+
+    // 1. class component
+        class Buttonjsx extends React.Component {
+            render() {
+                return <button className="btn btn-primary me-1">{this.props.text}</button>;
+            }
+        }
+        // arrow function
+        const Button2 = () => {
+            return <button className="btn btn-primary mt-1">Go Some Where</button>;
+        }
+
+        class CardsJsx extends React.Component {
+
+            constructor() {
+                super();
+                this.state = {
+                    Judul : 'Aku adalah state',
+                    Subtitle : 'Aku adalah subtitle card'
+                }
+            }
+
+            ubahJudul = () => {
+                this.setState({
+                    Judul : "I Berubah"
+                })
+            }
+
+            render () {
+                const cards = (
+                    <div className={"card"}>
+                        <div className={"card-body"}>
+                            <h5 className={"card-title"}>{this.state.Judul}</h5>
+                            <p className={"card-text"}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, perspiciatis?</p>
+                            <Buttonjsx text="aku adalah props 1"/>
+                            <Buttonjsx text="aku adalah props 2"/>
+                            <button onClick={this.ubahJudul}>Ubah Title</button>
+                        </div>
+                    </div>
+                )
+                return cards;
+            }
+        }
+
+    // functional component
+        const CardFunction = () => {
+
+            // react state di function component disebut hool
+            const [state, setState] = React.useState('Judul card menggunakan react state di dalam function yang disebut hook');
+
+            return (
+                <div className="card" style={{width: '18rem'}}>
+                    <div className="card-body">
+                        <h5 className="card-title">{state}</h5>
+                        <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, perspiciatis?</p>
+                        <Button2 />
+                        <Button2 />
+                        <Button2 />
+                    </div>
+                </div>
+            )
+        }
+        ReactDOM.render(<CardFunction />, document.body);
+    </script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+</html>
